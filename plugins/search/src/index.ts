@@ -32,6 +32,8 @@ export {
   SearchResultPager,
   SearchType,
   SidebarSearch,
+  SearchModal,
+  SidebarSearchModal,
   useSearch,
 } from './components';
 export type { FiltersState } from './components';
