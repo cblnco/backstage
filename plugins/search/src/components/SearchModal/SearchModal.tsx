@@ -37,7 +37,7 @@ interface SearchModalProps {
   toggleModal: () => void;
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   container: {
     borderRadius: 30,
     display: 'flex',
@@ -46,8 +46,9 @@ const useStyles = makeStyles(() => ({
   input: {
     flex: 1,
   },
-  paperFullWidth: { minHeight: 'calc(100% - 128px)' },
-  dialogActionsContainer: { padding: '8px 24px' },
+  // Reduces default height of the modal, keeping a gap of 128px between the top and bottom of the page.
+  paperFullWidth: { maxHeight: 'calc(100% - 128px)' },
+  dialogActionsContainer: { padding: theme.spacing(1, 3) },
 }));
 
 export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
@@ -83,12 +84,12 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
         paperFullWidth: classes.paperFullWidth,
       }}
       onClose={toggleModal}
-      aria-labelledby="customized-dialog-title"
+      aria-labelledby="search-modal-title"
       open={open}
       fullWidth
       maxWidth="lg"
     >
-      <DialogTitle id="customized-dialog-title">
+      <DialogTitle>
         <Paper className={classes.container}>
           <SearchBarBase
             className={classes.input}
